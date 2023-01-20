@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/home.css">
+</head>
+<body>
+    <header>
+        <div onclick="location.href='/'">
+            <img style="width: 7vh;" src="/icons/yarn-ball.png">
+            <text>bongEdalE</text>
+            <a href="https://www.instagram.com/ahndonghyun3586/"><img style="width: 4vh; margin-top: 1vh; margin-left: 2vh;" src="/icons/instagram.png"></a>
+            <a href="https://www.facebook.com/dongarii"><img style="width: 4vh;  margin-top: 1vh; margin-left: 1vh" src="/icons/facebook.png"></a>
+          <a href="https://github.com/bongEdalE"><img style="width: 4vh;  margin-top: 1vh; margin-left: 1vh" src="/icons/github.png" ></a>
+          <a href="https://blog.naver.com/ahndongari18"> <img style="width: 4vh;  margin-top: 1vh; margin-left: 1vh" src="/icons/blogging.png"></a>
+        </div>
+        <% if(!logined){%>
+        <div onclick="location.href='/login'"><text>login</text></div>
+        <%}else{%>
+            <div>
+            <div class="h_mypage" onclick="location.href='/mypage/:userid'"><text>마이페이지</text></div>
+            <form method="post">
+                <input name="logout" type="hidden" value="logout">
+                <button class="h_logout">로그아웃</button>
+            </form>
+        </div>
+            <%}%>
+    </header>
+    <div class="main">
+        <div class="chat">
+            <div class="cat">
+            <img class="달이" style="width: 68vh ;" src="/icons/달이야.jpg">
+            </div>
+            <div> 
+                <div class="announcement_title" >
+                  <text onclick="location.href='/board/board3/1'"><text>★ 공지사항 ★</text></text> 
+                </div>
+                <div class="announcement_main">
+                    <% for(var i =0;i<5;i++){ %>
+                        <% if(board3[i].board_key){%>
+                    <div class="main_info"  onclick="location.href='/boardScript/<%=board3[i].boardName%>/<%=board3[i].board_key%>/1'">
+                       <div><text><%=board3[i].title%></text></div> 
+                       <div><text><%=board3[i].date%></text></div>
+                    </div>
+                    <%}else{%>
+                    <div class="main_info"  >
+                        <text><%=board3[i].nick%></text> 
+                        <text><%=board3[i].title%></text> 
+                        <text><%=board3[i].date%></text>
+                    </div>
+                    <%}%>
+                    <%}%>
+                </div>
+               
+            </div>
+        </div>
+        <div>
+            <!-- board1 -->
+            <div> 
+                <div class="title">
+                  <text onclick="location.href='/board/board1/1'">건의하기</text> 
+                </div>
+                
+                
+                <div class="board">
+                    <% for(var i =0;i<10;i++){ %>
+                        <% if(board1[i].board_key){%>
+                    <div class="script" onclick="location.href='/boardScript/<%=board1[i].boardName%>/<%=board1[i].board_key%>/1'">
+                        <text><%=board1[i].nick%></text> 
+                        <text><%=board1[i].title%></text> 
+                        <text><%=board1[i].date%></text>
+                    </div>
+                    <%}else{%>
+                    <div class="script">
+                        <text><%=board1[i].nick%></text> 
+                        <text><%=board1[i].title%></text> 
+                        <text><%=board1[i].date%></text>
+                    </div>
+                    <%}%>
+                    <%}%>
+                </div>
+               
+            </div>
+            <!-- board2 -->
+            <div>
+                <div class="title">
+                    <text onclick="location.href='/board/board2/1'">시끌벅적</text> 
+                </div>
+                <div class="board">
+                    <% for(var i =0;i<10;i++){ %>
+                        <% if(board2[i].board_key){%>
+                        <div class="script" onclick="location.href='/boardScript/<%=board2[i].boardName%>/<%=board2[i].board_key%>/1'">
+                            <text><%=board2[i].nick%></text> 
+                            <text><%=board2[i].title%></text> 
+                            <text><%=board2[i].date%></text>
+                        </div>
+                        <%}else{%>
+                            <div class="script">
+                                <text><%=board2[i].nick%></text> 
+                                <text><%=board2[i].title%></text> 
+                                <text><%=board2[i].date%></text>
+                            </div>
+                        <%}%>
+                        <%}%>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <text>본 사이트는 안동현이 뼈를 갈아서 3일동안 만든 웹페이지입니다</text>
+        <text>불만 있으면 메일주세요 8a47x67b33@naver.com</text>
+    </footer>
+</body>
+</html>

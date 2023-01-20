@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/boardList.css">
+</head>
+<body>
+    <header>
+        <div onclick="location.href='/'">
+            <img style="width: 7vh;" src="/icons/yarn-ball.png">
+            <text>bongEdalE</text>
+            <a href="https://www.instagram.com/ahndonghyun3586/"><img style="width: 4vh; margin-top: 1vh; margin-left: 2vh;" src="/icons/instagram.png"></a>
+            <a href="https://www.facebook.com/dongarii"><img style="width: 4vh;  margin-top: 1vh; margin-left: 1vh" src="/icons/facebook.png"></a>
+          <a href="https://github.com/bongEdalE"><img style="width: 4vh;  margin-top: 1vh; margin-left: 1vh" src="/icons/github.png" ></a>
+          <a href="https://blog.naver.com/ahndongari18"> <img style="width: 4vh;  margin-top: 1vh; margin-left: 1vh" src="/icons/blogging.png"></a>
+        </div>
+        <% if(!logined){%>
+        <div onclick="location.href='/login'"><text>login</text></div>
+        <%}else{%>
+            <div>
+            <div class="h_mypage" onclick="location.href='/mypage/:userid'"><text>마이페이지</text></div>
+            <form method="post">
+                <input name="logout" type="hidden" value="logout">
+                <button class="h_logout">로그아웃</button>
+            </form>
+        </div>
+            <%}%>
+    </header>
+    <div class="main">
+      
+            <!-- board1 -->
+            <div> 
+                <%var board_Name%>
+                <%if(boardData[0].boardName == 'board1')board_Name = '건의사항'%>
+                <%if(boardData[0].boardName == 'board2')board_Name = '시끌벅적'%>
+                <%if(boardData[0].boardName == 'board3')board_Name = '공지사항'%>
+                <div class="board"><text><%=board_Name%></text></div>
+                <!-- 게시글 12개 -->
+                    <%var page = boardListPage %>
+                    
+                    <% for(var i=(page-1)*10;i<page*10;i++){ %>
+                        <% if(boardData[i].nick==''){%>
+                            <div class="script" >
+                                <text></text> 
+                                <text></text> 
+                                <text></text>
+                            </div>
+                            
+                        <%}else{%>
+                    <div class="script" onclick="location.href='/boardScript/<%=boardData[i].boardName%>/<%=boardData[i].board_key%>/1'">
+                        <text><%=boardData[i].nick %></text> 
+                        <text><%=boardData[i].title %></text> 
+                        <text><%=boardData[i].date %></text>
+                    </div>
+                    <%}%>
+                    <%}%>
+
+                    <ul>
+                        <% for(var i=1;i<=count;i++){%>
+                            <li onclick="location.href='/board/<%=boardData[0].boardName%>/<%=i%>'"><%=i%></li>
+                            <%}%>
+                    </ul>
+                    <%if(logined){%>
+                <button onclick="location.href='/write/<%=boardData[0].boardName%>'">글쓰기</button>
+                    <%}%>
+            </div>
+           
+    </div>
+    
+    <footer>
+        <text>본 사이트는 안동현이 뼈를 갈아서 3일동안 만든 웹페이지입니다</text>
+        <text>불만 있으면 메일주세요 8a47x67b33@naver.com</text>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.tiny.cloud/1/snmdpp5re9uz1d6scomipgx0xxfsdjh5grs3c3jjebe6bxvi/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: '#script',
+        })
+    </script>
+    <link rel="stylesheet" href="/css/update.css">
+</head>
+<body>
+    <header>
+        <div onclick="location.href='/'">
+            <img style="width: 7vh;" src="/icons/yarn-ball.png">
+            <text>bongEdalE</text>
+            <a href="https://www.instagram.com/ahndonghyun3586/"><img style="width: 4vh; margin-top: 1vh; margin-left: 2vh;" src="/icons/instagram.png"></a>
+            <a href="https://www.facebook.com/dongarii"><img style="width: 4vh;  margin-top: 1vh; margin-left: 1vh" src="/icons/facebook.png"></a>
+          <a href="https://github.com/bongEdalE"><img style="width: 4vh;  margin-top: 1vh; margin-left: 1vh" src="/icons/github.png" ></a>
+          <a href="https://blog.naver.com/ahndongari18"> <img style="width: 4vh;  margin-top: 1vh; margin-left: 1vh" src="/icons/blogging.png"></a>
+        </div>
+        <% if(!logined){%>
+        <div onclick="location.href='/login'"><text>login</text></div>
+        <%}else{%>
+            <div>
+            <div class="h_mypage" onclick="location.href='/mypage/:userid'"><text>마이페이지</text></div>
+            <form method="post">
+                <input name="logout" type="hidden" value="logout">
+                <button class="h_logout">로그아웃</button>
+            </form>
+        </div>
+            <%}%>
+    </header>
+    
+    <div class="main">
+        <form method="post">
+      <div>
+        <div class="title">
+            <input name="title" type="text" value="<%=boardData.title%>" placeholder="제목을 입력해주세요">
+            <input name="boardName" type="hidden" value="<%=boardData.boardName%>">
+            <input name="board_key" type="hidden" value="<%=boardData.board_key%>">
+        </div>
+        <textarea name="script" id="script" class="script"><%=boardData.script%></textarea>
+        <div class="upDel">
+            <button>수정</button>
+            <span onclick="history.back()">취소</span>
+            </div>
+      </div>
+    </form>
+      
+    </div>
+
+    <footer>
+        <text>본 사이트는 안동현이 뼈를 갈아서 3일동안 만든 웹페이지입니다</text>
+        <text>불만 있으면 메일주세요 8a47x67b33@naver.com</text>
+    </footer>
+</body>
+</html>

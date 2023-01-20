@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/mypage.css">
+</head>
+<body>
+    <header>
+        <div onclick="location.href='/'">
+            <img style="width: 7vh;" src="/icons/yarn-ball.png">
+            <text>bongEdalE</text>
+            <a href="https://www.instagram.com/ahndonghyun3586/"><img style="width: 4vh; margin-top: 1vh; margin-left: 2vh;" src="/icons/instagram.png"></a>
+            <a href="https://www.facebook.com/dongarii"><img style="width: 4vh;  margin-top: 1vh; margin-left: 1vh" src="/icons/facebook.png"></a>
+          <a href="https://github.com/bongEdalE"><img style="width: 4vh;  margin-top: 1vh; margin-left: 1vh" src="/icons/github.png" ></a>
+          <a href="https://blog.naver.com/ahndongari18"> <img style="width: 4vh;  margin-top: 1vh; margin-left: 1vh" src="/icons/blogging.png"></a>
+        </div>
+        <% if(!logined){%>
+        <div onclick="location.href='/login'"><text>login</text></div>
+        <%}else{%>
+            <div>
+            <div class="h_mypage" onclick="location.href='/mypage/:userid'"><text>마이페이지</text></div>
+            <form method="post">
+                <input name="logout" type="hidden" value="logout">
+                <button class="h_logout">로그아웃</button>
+            </form>
+        </div>
+            <%}%>
+    </header>
+    <div class="main">
+        <div>
+          <div class="title"><text><%=name%>의 마이페이지</text></div>
+          <div class="userInfo">
+            <div> 
+             <div class="info">
+             
+             </div>
+            <ul class="change">
+                <li onclick="location.href='/userInfo/changePw/:id'"><text>비밀번호 변경</text></li>
+                <li onclick="location.href='/userInfo/changeNick/:id'"><text>닉네임변경</text></li>
+                <li onclick="location.href='/userInfo/secession/:id'"><text>회원탈퇴</text></li>
+            </ul>
+           
+            </div>
+           
+            <div>
+                <div class="board_title"><text>내가 작성한 글목록입니다</text></div>
+                
+                <%for(var i=0;i<board.length;i++){%>
+                    <% var boardName ;  %>
+                <% if(board[i].boardName=='board1')boardName = '공지사항'%>
+                <% if(board[i].boardName=='board2')boardName = '시끌벅적'%>
+                <div class="board" onclick="location.href='/boardScript/<%=board[i].boardName%>/<%=board[i].board_key%>/1'">
+                    <div><text><%=board[i].title%></text></div>
+                    <div><text><%=boardName%></text></div>
+                    <div><text><%=board[i].date%></text></div>
+                </div>
+                <%}%>
+            </div>
+            <div>
+                <div class="comm_title"><text>내가 작성한 댓글 목록입니다</text></div>
+                <%for(var i=0;i<comment.length;i++){%>
+                <div class="comment" >
+                    <div><%=comment[i].script%></div>
+                    <div><%=comment[i].date%></div>
+                   
+                </div>
+                <%}%>
+            </div>
+          </div>
+        </div>
+       
+    </div>
+    
+    <footer>
+        <text>본 사이트는 안동현이 뼈를 갈아서 3일동안 만든 웹페이지입니다</text>
+        <text>불만 있으면 메일주세요 8a47x67b33@naver.com</text>
+    </footer>
+</body>
+</html>
